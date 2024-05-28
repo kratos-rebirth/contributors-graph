@@ -22,10 +22,16 @@ jobs:
         env:
           TOKEN: ${{ github.token }}
 
-      - name: Upload artifacts
+      - name: Move generated graph into correct directory
+        run: mv contributors.svg pages/
+
+      - name: Bypass Jekyll
+        run: touch pages/.nojekyll
+
+      - name: Upload artifacts for pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: contributors.svg
+          path: pages
 
   deploy:
     needs: build
