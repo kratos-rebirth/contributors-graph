@@ -139,8 +139,12 @@ func GenerateGraph(contributors []ContributorInfoDownload) string {
 	// Generate SVG with template
 
 	avatarSpace := AvatarSize + 2*AvatarMargin
+	linesCount := len(contributors) / AvatarsPerLine
+	if len(contributors)%AvatarsPerLine > 0 {
+		linesCount++
+	}
 
-	startTemplate := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%d" height="%d">`, AvatarsPerLine*avatarSpace, (len(contributors)/AvatarsPerLine+1)*avatarSpace)
+	startTemplate := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%d" height="%d">`, AvatarsPerLine*avatarSpace, linesCount*avatarSpace)
 	styleTemplate := `<style></style>`
 
 	internalContent := ""
