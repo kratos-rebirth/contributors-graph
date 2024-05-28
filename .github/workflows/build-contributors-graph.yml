@@ -26,9 +26,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "contributors-graph"
-          path: |
-            index.html
-            contributors.svg
+          path: contributors.svg
 
   deploy:
     needs: build
