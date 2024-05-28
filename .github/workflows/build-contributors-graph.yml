@@ -22,11 +22,16 @@ jobs:
         env:
           TOKEN: ${{ github.token }}
 
+      - name: Bypass Jekyll
+        run: touch .nojekyll
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: "contributors-graph"
-          path: contributors.svg
+          path: |
+            contributors.svg
+            .nojekyll
 
   deploy:
     needs: build
